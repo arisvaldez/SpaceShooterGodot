@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://weapoms/lasers/Laser.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/laser_green.png" type="Texture" id=2]
+[ext_resource path="res://weapoms/lasers/laser_player/LaserPlayer.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.88174, 23.3672 )
+
+[node name="LaserPlayer" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+velocity = Vector2( 0, -2048 )
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 1.25992, -2.99231 )
+rotation = 1.5708
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+position = Vector2( -0.31498, 9.53674e-07 )
+scale = Vector2( 0.338541, 2.32292 )
+[connection signal="area_entered" from="." to="." method="_on_LaserPlayer_area_entered"]

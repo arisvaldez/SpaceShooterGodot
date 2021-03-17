@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://powerups/PowerUp.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/powerup.png" type="Texture" id=2]
+[ext_resource path="res://powerups/powerup_helpers/PowerUpHelpers.gd" type="Script" id=3]
+[ext_resource path="res://weapoms/helpers/Helpers.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 45.7033
+
+[node name="PowerUpHelpers" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+scene_helpers = ExtResource( 4 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+[connection signal="area_entered" from="." to="." method="_on_PowerUpHelpers_area_entered"]

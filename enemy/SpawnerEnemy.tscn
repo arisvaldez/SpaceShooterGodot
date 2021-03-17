@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://enemy/SpawnerEnemy.gd" type="Script" id=1]
+
+[node name="SpawnerEnemy" type="Node"]
+script = ExtResource( 1 )
+
+[node name="SpwanTimer" type="Timer" parent="."]
+wait_time = 3.0
+[connection signal="timeout" from="SpwanTimer" to="." method="_on_SpwanTimer_timeout"]

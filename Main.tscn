@@ -1,0 +1,250 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://sprites/button_normal.png" type="Texture" id=2]
+[ext_resource path="res://sprites/button_pressed.png" type="Texture" id=3]
+[ext_resource path="res://sprites/button_hover.png" type="Texture" id=4]
+[ext_resource path="res://sprites/spaceship3D.png" type="Texture" id=5]
+[ext_resource path="res://Main.gd" type="Script" id=6]
+[ext_resource path="res://effects/stars/Stars.tscn" type="PackedScene" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 92
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "ship_entrance"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpaceShip3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 974, -144 ), Vector2( 376, 475 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpaceShip3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "fade_in", -1, 1.0, false ],
+"method": "play"
+} ]
+}
+
+[node name="Main" type="Node"]
+script = ExtResource( 6 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="HUD"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_top = -2.0
+margin_right = -2.0
+margin_bottom = -2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 119.134
+margin_bottom = 193.134
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 2
+text = "Space Shooter"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="StartButton" type="TextureButton" parent="HUD/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -115.5
+margin_top = 264.473
+margin_right = 115.5
+margin_bottom = 346.473
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/Control/StartButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -115.5
+margin_top = -41.0
+margin_right = 115.5
+margin_bottom = 41.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 2
+text = "Start"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="QuitButton" type="TextureButton" parent="HUD/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -114.308
+margin_top = 395.079
+margin_right = 116.692
+margin_bottom = 477.079
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="HUD/Control/QuitButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -115.5
+margin_top = -41.0
+margin_right = 115.5
+margin_bottom = 41.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 2
+text = "Quit"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HBox" type="HBoxContainer" parent="HUD/Control"]
+anchor_right = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleScoreLabel" type="Label" parent="HUD/Control/HBox"]
+margin_right = 477.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 2
+text = "Best Score"
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="BestScoreLabel" type="Label" parent="HUD/Control/HBox"]
+margin_left = 481.0
+margin_right = 720.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 2
+text = "0"
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Stars" parent="." instance=ExtResource( 7 )]
+
+[node name="SpaceShip3D" type="Sprite" parent="."]
+position = Vector2( 376, 475 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "ship_entrance"
+anims/fade_in = SubResource( 6 )
+anims/ship_entrance = SubResource( 7 )
+[connection signal="pressed" from="HUD/Control/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="HUD/Control/QuitButton" to="." method="_on_QuitButton_pressed"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://effects/explosion/Explosion.tscn" type="PackedScene" id=2]
+
+[node name="Enemy" type="Area2D" groups=[
+"enemy",
+]]
+script = ExtResource( 1 )
+Explosion = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
